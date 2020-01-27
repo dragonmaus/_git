@@ -1,0 +1,8 @@
+.git/
+.redo/
+/.*history
+/.cache/
+/.local/
+/.ssh/
+/etc/secret/
+/src/ext/

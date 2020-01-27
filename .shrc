@@ -1,0 +1,22 @@
+# ~/.shrc
+
+# User-specific interactive shell initialization
+
+alias doas='doas '
+alias lc='ls -C'
+alias ll='ls -Fl'
+alias ls='ls -1A'
+
+HISTFILE="$HOME/.history"
+HISTSIZE=12000
+
+set -o physical
+set -o vi
+
+function title {
+	print -n "\033];$*\007" > /dev/tty
+}
+
+PS1='($USER@$HOSTNAME) $( date +%T ) [$( h="$( cd "$HOME" && pwd )"; p="$PWD/"; case "$p" in ("$h/"*) p="~${p#"$h"}";; esac; p="${p%/}"; title "$HOSTNAME [$p] - '"$( basename "$SHELL" )"'"; print "$p" )]\nτ '
+
+trap -- "[[ -r '$HOME/.logout' ]] && . '$HOME/.logout'" EXIT
