@@ -1,6 +1,8 @@
+certbot--
 dash--static
 gitea--
 neovim--
+postgresql-server--
 pstree--
 py-pip--
 py3-pip--
