@@ -3,4 +3,4 @@
 uri="$( cat "$HOME/etc/secret/freedns.uri" )"
 
 sleep 12
-curl -s "$uri" | grep -xv 'No IP change detected for .*, skipping update'
+curl -s "$uri" | grep -vx 'No IP change detected for .*, skipping update'
