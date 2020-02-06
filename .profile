@@ -11,6 +11,29 @@ case "$-" in
 	;;
 esac
 
+# Ensure that `echo' is sane
+case "$KSH_VERSION" in
+(*MIRBSD\ KSH*|*LEGACY\ KSH*|*PD\ KSH*)
+	alias echo='print -R'
+	;;
+(*)
+	echo() (
+		f='%s\n'
+		case "$1" in
+		(-n)
+			f='%s'
+			shift
+			;;
+		esac
+		printf "$f" "$*"
+	)
+	;;
+esac
+
+# XDG directories
+CONF="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+DATA="${XDG_DATA_HOME:-"$HOME/.local/share"}"
+
 # Clean up and augment PATH
 command -v realpath > /dev/null || realpath() ( readlink -f "$1" )
 path=
@@ -18,7 +41,7 @@ ifs="$IFS"
 IFS=:
 for d in "$HOME/bin" "$HOME/.cargo/bin" "$HOME/src/go/bin" "$HOME/src/go/ext/bin" "$HOME/.local/bin" $PATH /usr/games
 do
-	d="$( realpath "$d" 2> /dev/null || print -r -- "$d" )"
+	d="$( realpath "$d" 2> /dev/null || echo "$d" )"
 	case ":$path:" in
 	(*":$d:"*)
 		continue
@@ -36,22 +59,22 @@ pgrep -qx -U "$( id -u )" ssh-agent || ssh-agent > "$HOME/.ssh/agent.sh"
 set -a
 
 ## Paths
-PATH="$path"
-MANPATH="$HOME/.local/share/man:"
 GOPATH="$HOME/src/go/ext:$HOME/src/go"
+MANPATH="$DATA/man:"
+PATH="$path"
 
 ## Shell configuration
-ENV="$HOME/.shrc"
+ENV="$CONF/shell/init.sh"
 
 ## Global configuration
 EDITOR="$( which nvim vim vi 2> /dev/null | head -1 )"
+HOSTNAME="${HOSTNAME:-"$( hostname -s )"}"
 LANG=en_US.UTF-8
 LC_COLLATE=C
-HOSTNAME="${HOSTNAME:-"$( hostname -s )"}"
-
-## App-specific configuration
-[[ -f "$HOME/.ssh/agent.sh" ]] && . "$HOME/.ssh/agent.sh"
 
 set +a
+
+# SSH agent
+[[ -f "$HOME/.ssh/agent.sh" ]] && . "$HOME/.ssh/agent.sh"
 
 umask 022
