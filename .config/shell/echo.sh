@@ -3,7 +3,8 @@ echo() (
 	case "$1" in
 	(-n)
 		f='%s'
+		shift
 		;;
 	esac
-	printf "$f" "$@"
+	printf "$f" "$*"
 )
