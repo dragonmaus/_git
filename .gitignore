@@ -2,6 +2,7 @@
 .redo/
 /.*history
 /.cache/
+/.cargo/
 /.local/
 /.ssh/
 /etc/secret/
