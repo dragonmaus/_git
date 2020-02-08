@@ -1,6 +1,7 @@
 certbot--
 dash--static
 gitea--
+jq--
 neovim--
 postgresql-server--
 pstree--
