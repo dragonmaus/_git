@@ -11,21 +11,23 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[*.{bat,cmd,reg,theme}]
+end_of_line = crlf
+
 [*.{diff,patch}]
 trim_trailing_whitespace = false
 
-[{*.{do,sh},.gitconfig,gitconfig}]
-indent_style = tab
-indent_size = tab
+[*.{fth,hs,lua,py}]
+indent_size = 4
 
 [*.go]
 indent_style = tab
 indent_size = tab
 tab_width = 4
 
-[*.py]
-indent_size = 4
-max_line_length = 79
+[{*.{i,m,mk,s},.gitconfig,Makefile*,crontab*,gitconfig}]
+indent_style = tab
+indent_size = tab
 
 [*.rs]
 indent_size = 4

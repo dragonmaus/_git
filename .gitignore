@@ -10,3 +10,6 @@
 /etc/secret/
 /mbox
 /src/ext/
+/src/rust/*.binary
+/src/rust/*/
+/tmp/

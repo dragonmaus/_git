@@ -1,4 +1,5 @@
 " Settings
+let g:asmsyntax = "nasm"
 let g:is_ksh = 1
 
 " Disable unwanted plugins

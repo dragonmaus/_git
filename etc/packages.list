@@ -1,12 +1,15 @@
+calc--
 certbot--
 dash--static
 gitea--
+go-tools--
 jq--
+nasm--
 neovim--
+p7zip--
 postgresql-server--
 pstree--
-py-pip--
-py3-pip--
+python--%2.7
 quirks--
 rust-clippy--
 rust-rustfmt--

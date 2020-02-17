@@ -74,7 +74,14 @@ LC_COLLATE=C
 
 set +a
 
+umask 022
+
 # SSH agent
 [[ -f "$HOME/.ssh/agent.sh" ]] && . "$HOME/.ssh/agent.sh"
 
-umask 022
+# Update SSH environment
+f="$HOME/.ssh/environment"
+rm -f "$f{new}"
+grep -v '^PATH=' < "$f" > "$f{new}"
+echo "PATH='$PATH'" >> "$f{new}"
+mv -f "$f{new}" "$f"

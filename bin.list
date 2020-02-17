@@ -1,4 +1,12 @@
+cargo-foreach
 cdiff
+dircp
 git-ignore
+pathsort
 qdiff
+ratio
+relpath
+rmafter
 shar
+syscall
+yamlfmt
