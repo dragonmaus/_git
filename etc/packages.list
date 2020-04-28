@@ -4,12 +4,12 @@ dash--static
 gitea--
 go-tools--
 jq--
+libqrencode--
 nasm--
 neovim--
 p7zip--
 postgresql-server--
 pstree--
-python--%2.7
 quirks--
 rust-clippy--
 rust-rustfmt--

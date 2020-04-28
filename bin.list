@@ -1,9 +1,14 @@
+abspath
 cargo-foreach
 cdiff
 dircp
+fsync
+gensum
 git-ignore
+lndir
 pathsort
 qdiff
+qr
 ratio
 relpath
 rmafter
