@@ -44,7 +44,7 @@ DATA=${XDG_DATA_HOME:-~/.local/share}
 path=
 ifs=$IFS
 IFS=:
-for d in ~/bin ~/.cargo/bin ~/src/go/bin ~/src/go/ext/bin ~/.local/bin $PATH /usr/games
+for d in ~/bin ~/.cargo/bin ~/.local/bin $PATH /usr/games
 do
   case /$d/ in
   (*/.nix-profile/*|*/nix/*)
@@ -67,7 +67,6 @@ path=${path#:}
 set -a
 
 ## Paths
-GOPATH=~/src/go/ext:~/src/go
 MANPATH=$DATA/man:
 PATH=$path
 
