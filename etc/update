@@ -71,7 +71,7 @@ then
     rustup update
 fi
 
-if ! which pip > /dev/null 2>&1
+if ! python -m pip --version > /dev/null 2>&1
 then
     echo '>> Installing pip'
     f=`mktemp`
