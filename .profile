@@ -24,6 +24,18 @@ case "$KSH_VERSION" in
   ;;
 esac
 
+# Enforce `separation of concerns' between login and interactive shells
+shell=`basename $SHELL`
+shell=${shell:-sh}
+case $- in
+(*i*)
+  exec $shell -l -c 'exec $shell -i "$@"' $shell "$@"
+  ;;
+esac
+
+# Pull in Nix configuration
+test -e ~/.nix-profile/etc/profile.d/nix.sh && . ~/.nix-profile/etc/profile.d/nix.sh
+
 # XDG directories
 CONF=${XDG_CONFIG_HOME:-~/.config}
 DATA=${XDG_DATA_HOME:-~/.local/share}
@@ -34,7 +46,13 @@ ifs=$IFS
 IFS=:
 for d in ~/bin ~/.cargo/bin ~/src/go/bin ~/src/go/ext/bin ~/.local/bin $PATH /usr/games
 do
-  d=`realpath $d 2> /dev/null || echo $d`
+  case /$d/ in
+  (*/.nix-profile/*|*/nix/*)
+    ;;
+  (*)
+    d=`realpath $d 2> /dev/null || echo $d`
+    ;;
+  esac
   case ":$path:" in
   (*:$d:*)
     continue
@@ -58,16 +76,16 @@ ENV=$CONF/shell/init.sh
 
 ## Global configuration
 EDITOR=`which nvim vim vi 2> /dev/null | head -1`
-LANG=en_US.UTF-8
-LC_COLLATE=C
+HOSTNAME=${HOSTNAME:-`hostname -s`}
+PAGER=less; MANPAGER="$PAGER -s"
 
 ## App-specific configuration
 HACKDIR=~/.hack
+LESS=FMRXi
+LESSHISTFILE=-
+RIPGREP_CONFIG_PATH=$CONF/ripgrep/config
 
 set +a
-
-# Set umask
-umask 022
 
 # Start ssh-agent if not already running
 pgrep -qx -U `id -u` ssh-agent || ssh-agent > ~/.ssh/agent.sh
@@ -79,5 +97,5 @@ test -f ~/.ssh/agent.sh && . ~/.ssh/agent.sh
 f=~/.ssh/environment
 rm -f $f{new}
 grep -v '^PATH=' < $f > $f{new}
-echo "PATH='$PATH'" >> $f{new}
+echo "PATH=$PATH" >> $f{new}
 mv -f $f{new} $f

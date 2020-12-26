@@ -1,6 +1,6 @@
 #!/bin/sh
 
-uri="$( cat "$HOME/etc/secret/freedns.uri" )"
+uri=$(cat ~/etc/secret/freedns.uri)
 
 sleep 12
 curl -s "$uri" | grep -vx 'No IP change detected for .*, skipping update'
