@@ -2,5 +2,6 @@
 
 uri=$(cat ~/etc/secret/freedns.uri)
 
-sleep 12
+sleep $(jot -r 1 20 10) # sleep for a random period between 10 and 20 seconds
+
 curl -s "$uri" | grep -vx 'No IP change detected for .*, skipping update'
