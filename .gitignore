@@ -3,7 +3,6 @@
 /.cargo/
 /.forward
 /.local/
-/.npm/
 /.ssh/
 /bin/
 /src/

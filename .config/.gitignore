@@ -1,5 +1,0 @@
-/coc/*
-/coc/extensions/*
-/configstore/
-!/coc/extensions/
-!/coc/extensions/package.json
