@@ -55,7 +55,7 @@ RIPGREP_CONFIG_PATH=$CONF/ripgrep.conf
 set +a
 
 # Start ssh-agent if not already running
-pgrep -qx -U $(id -u) ssh-agent || ssh-agent > ~/.ssh/agent.sh
+pgrep -qx -U $(id -u) ssh-agent || ssh-agent -s > ~/.ssh/agent.sh
 
 # SSH agent
 [ -f ~/.ssh/agent.sh ] && . ~/.ssh/agent.sh
