@@ -1,2 +1,2 @@
 # git
-My git server home directory.
+## OpenBSD on Vultr
