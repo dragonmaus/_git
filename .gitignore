@@ -2,6 +2,7 @@
 /.cache/
 /.cargo/
 /.forward
+/.history
 /.local/
 /.ssh/
 /bin/
