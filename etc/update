@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 ## System
 echo '>> Updating base system patches'
 doas syspatch
@@ -25,6 +27,7 @@ do
 	) || break
 done
 rm -f $manual $leaves
+trap -- - EXIT INT KILL
 
 echo '>> Updating package list'
 list=~/etc/packages.list
