@@ -1,7 +1,6 @@
 calc
 cmark
 dash
-geomyidae
 git
 gitea
 gophernicus
@@ -15,5 +14,3 @@ quirks
 rsync
 rust-clippy
 rust-rustfmt
-stagit
-stagit-gopher
