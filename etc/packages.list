@@ -14,3 +14,4 @@ quirks--
 rsync--
 rust-clippy--
 rust-rustfmt--
+sysclean--
