@@ -1,10 +1,9 @@
 #!/bin/sh
 
-u=$(< ~/etc/secret/dns-update.uri)
-t=$(mktemp -t update-dns.XXXXXXXXXX)
-trap "rm -f '$t'" EXIT KILL INT
+uri=$(cat ~/etc/secret/update-dns.uri)
+tmp=$(mktemp -t update-dns.XXXXXXXXXX)
+trap "rm -f '$tmp'" EXIT KILL INT
 
-curl -Lks "$u" | tee "$t"
+curl -Ls "$uri" | tee "$tmp"
 
-grep -qx '^No IP change detected for .*, skipping update$' "$t"
-exit $?
+grep -qx '^No IP change detected for .*, skipping update$' "$tmp"

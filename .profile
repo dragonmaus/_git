@@ -33,10 +33,9 @@ HACKDIR=~/.hack
 LESS=Ri
 LESSHISTFILE=-
 PYTHONUSERBASE=~/.local/python
-RIPGREP_CONFIG_PATH=~/.config/ripgrep.conf
 
 # Start ssh-agent if it isn't already running
-if ! pgrep -qx -U `id -un` -G `id -gn` ssh-agent
+if ! pgrep -qx -U $(id -un) -G $(id -gn) ssh-agent
 then
        ssh-agent > ~/.ssh/agent.sh
 fi
