@@ -76,6 +76,12 @@ esac
 GPG_TTY=$(tty)
 export GPG_TTY
 
+# Import ssh-agent configuration
+if [ -s ~/.ssh/agent.sh ]
+then
+       . ~/.ssh/agent.sh
+fi
+
 # Set up exit trap
 trap -- '[ -r ~/.logout ] && . ~/.logout' EXIT
 

@@ -1,7 +1,10 @@
 #!/bin/sh
 
-uri=$(cat ~/etc/secret/freedns.uri)
+u=$(< ~/etc/secret/dns-update.uri)
+t=$(mktemp -t update-dns.XXXXXXXXXX)
+trap "rm -f '$t'" EXIT KILL INT
 
-sleep $(jot -r 1 20 10) # sleep for a random period between 10 and 20 seconds
+curl -Lks "$u" | tee "$t"
 
-curl -s "$uri" | grep -vx 'No IP change detected for .*, skipping update'
+grep -qx '^No IP change detected for .*, skipping update$' "$t"
+exit $?
